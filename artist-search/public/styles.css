@@ -19,6 +19,13 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
+.search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
 h1 {
     text-align: center;
     font-size: 32px;
@@ -30,13 +37,12 @@ h1 {
     width: 70%;
     padding: 12px;
     font-size: 16px;
-    margin-bottom: 20px;
     border: none;
     border-radius: 4px;
     background-color: #282828;
     color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    display: inline-block;
+    box-sizing: border-box; /* Asegura que el padding no afecte el tamaño total */
+    height: 50px; /* Ajusta la altura para que coincida con el botón */
 }
 
 #searchButton {
@@ -45,14 +51,17 @@ h1 {
     border: none;
     border-radius: 4px;
     background-color: #1DB954;
-    color: #fff;
+    color: white;
     cursor: pointer;
-    display: inline-block;
-    margin-left: 10px;
+    margin-left: 10px; /* Añade un margen izquierdo para separar el botón del campo de búsqueda */
+    height: 50px; /* Ajusta la altura para que coincida con la barra de búsqueda */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #searchButton:hover {
-    background-color: #1ed760;
+    background-color: #1aa34a;
 }
 
 .artist-card {
@@ -64,6 +73,7 @@ h1 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     margin-top: 20px;
     transition: background-color 0.3s;
+    cursor: pointer;
 }
 
 .artist-card:hover {
@@ -88,4 +98,9 @@ h1 {
     margin: 5px 0 0;
     font-size: 16px;
     color: #b3b3b3;
+}
+.artist-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
 }

@@ -1,20 +1,4 @@
-import { clientId, clientSecret } from '../config.js';
-
-async function getToken() {
-    const authString = btoa(`${clientId}:${clientSecret}`);
-
-    const response = await fetch('https://accounts.spotify.com/api/token', {
-        method: 'POST',
-        headers: {
-            'Authorization': `Basic ${authString}`,
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: 'grant_type=client_credentials'
-    });
-
-    const data = await response.json();
-    return data.access_token;
-}
+import { getToken } from './auth.js';
 async function searchForArtist(token, artistName) {
     const response = await fetch(`https://api.spotify.com/v1/search?q=${artistName}&type=artist&limit=5`, {
         headers: {
@@ -58,7 +42,6 @@ async function displayArtist() {
                     <p>Followers: ${artist.followers.total.toLocaleString()}</p>
                     <p>Genres: ${artist.genres.join(', ')}</p>
                     <p>Popularity: ${artist.popularity}</p>
-                    <p>Artist ID: ${artist.id}</p>
                 </div>
             `;
     

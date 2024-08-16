@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist Details</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="artist-details"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const artistId = urlParams.get('id');
+
+            if (artistId) {
+                const token = await getToken();
+                const artist = await getArtistById(token, artistId);
+
+                const artistDetails = document.getElementById('artist-details');
+                artistDetails.innerHTML = `
+                    <h1>${artist.name}</h1>
+                    <img src="${artist.images[0]?.url || 'https://via.placeholder.com/100'}" alt="${artist.name}">
+                    <p>Followers: ${artist.followers.total.toLocaleString()}</p>
+                    <p>Genres: ${artist.genres.join(', ')}</p>
+                    <p>Popularity: ${artist.popularity}</p>
+                    <p>Artist ID: ${artist.id}</p>
+                `;
+            } else {
+                console.error('Artist ID not found in URL');
+            }
+        });
+
+        async function getToken() {
+            // Implementa la lógica para obtener el token
+        }
+
+        async function getArtistById(token, artistId) {
+            const response = await fetch(`https://api.spotify.com/v1/artists/${artistId}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            return response.json();
+        }
+    </script>
+</body>
+</html>

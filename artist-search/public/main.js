@@ -45,49 +45,34 @@ async function displayArtist() {
     
     if (Array.isArray(artists)) {
         artists.forEach(artist => {
+            const artistLink = document.createElement('a');
+            artistLink.href = `artist.html?id=${artist.id}`;
+            artistLink.classList.add('artist-link');
+    
             const artistCard = document.createElement('div');
-            artistCard.classList.add('artist-card');            if (!artistName) return;
-            
-            // Deshabilitar barra de búsqueda y botón, mostrar texto de búsqueda
-            searchBar.disabled = true;
-            searchButton.disabled = true;
-            searchingText.style.display = 'block';
-            
-            artistContainer.innerHTML = ''; // Limpiar contenedor
-            
-            if (Array.isArray(artists)) {
-                artists.forEach(artist => {
-                    const artistLink = document.createElement('a');
-                    artistLink.href = artist.external_urls.spotify;
-                    artistLink.target = '_blank';
-                    artistLink.classList.add('artist-link');
-            
-                    const artistCard = document.createElement('div');
-                    artistCard.classList.add('artist-card');
-                    artistCard.innerHTML = `
-                        <img src="${artist.images[0]?.url || 'https://via.placeholder.com/100'}" alt="${artist.name}">
-                        <div class="artist-info">
-                            <h3>${artist.name}</h3>
-                            <p>Followers: ${artist.followers.total.toLocaleString()}</p>
-                            <p>Genres: ${artist.genres.join(', ')}</p>
-                        </div>
-                    `;
-            
-                    artistLink.appendChild(artistCard);
-                    artistContainer.appendChild(artistLink);
-                });
-            } else {
-                console.error('Expected an array of artists');
-            }
-            
-            // Rehabilitar barra de búsqueda y botón, ocultar texto de búsqueda
-            searchBar.disabled = false;
-            searchButton.disabled = false;
-            searchingText.style.display = 'none';
+            artistCard.classList.add('artist-card');
+            artistCard.innerHTML = `
+                <img src="${artist.images[0]?.url || 'https://via.placeholder.com/100'}" alt="${artist.name}">
+                <div class="artist-info">
+                    <h3>${artist.name}</h3>
+                    <p>Followers: ${artist.followers.total.toLocaleString()}</p>
+                    <p>Genres: ${artist.genres.join(', ')}</p>
+                    <p>Popularity: ${artist.popularity}</p>
+                    <p>Artist ID: ${artist.id}</p>
+                </div>
+            `;
+    
+            artistLink.appendChild(artistCard);
+            artistContainer.appendChild(artistLink);
         });
     } else {
         console.error('Expected an array of artists');
     }
+    
+    // Rehabilitar barra de búsqueda y botón, ocultar texto de búsqueda
+    searchBar.disabled = false;
+    searchButton.disabled = false;
+    searchingText.style.display = 'none';
 
     // Rehabilitar barra de búsqueda y botón, ocultar texto de búsqueda
     searchBar.disabled = false;

@@ -1,24 +1,15 @@
+/* Global Styles */
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
     font-family: 'Circular', Arial, sans-serif;
     background-color: #121212;
     color: #fff;
-    margin: 0;
     padding: 20px;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #181818;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-    display: flex;
-    gap: 20px;
 }
 
 h1 {
@@ -27,63 +18,86 @@ h1 {
     font-weight: 700;
     margin-bottom: 20px;
 }
-.left-column, .right-column {
+
+/* Container for the two columns */
+.container {
+    display: flex;
+    max-width: 1800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #181818;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.container > div {
     flex: 1;
-}
-
-#artist-details {
-    font-family: Arial, sans-serif;
-    padding: 40px;
-    border: 1px solid #ddd;
+    padding: 20px;
+    background-color: #202020;
     border-radius: 8px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-    background-color: #1e1e1e;
-    text-align: center;
 }
 
-#artist-details h1 {
-    font-size: 3em;
+#left-column {
+    margin-right: 10px; /* Space between the two columns */
+}
+
+#right-column {
+    margin-left: 10px; /* Space between the two columns */
+}
+
+/* Artist Details Section */
+.artist-details,
+.song-search-container {
+    text-align: center;
     margin-bottom: 20px;
-    text-align: center;
 }
 
-#artist-details img {
-    max-width: 50%;
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 30px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#artist-details p {
-    font-size: 1.2em;
-    margin: 10px 0;
-    color: #b3b3b3;
-    text-align: center;
-}
-
-#artist-details p span {
+.artist-name h1,
+.song-search-container h2,
+.top-songs h2 {
+    font-size: 28px;
+    font-weight: 600;
     color: #fff;
-    font-weight: bold;
+    margin-bottom: 20px;
 }
 
-.right-column h2 {
-    text-align: center;
-    font-size: 2em;
+.artist-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 20px;
+}
+
+.artist-image img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin-right: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.artist-stats p {
+    margin: 5px 0;
+    font-size: 18px;
+    color: #b3b3b3;
+}
+
+/* Track Cards (Shared between Top Songs and Search Results) */
+#top-tracks,
+#search-results {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .track-card {
     display: flex;
     align-items: center;
     background-color: #1e1e1e;
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 20px;
+    padding: 10px;
+    border-radius: 8px;
     transition: background-color 0.3s;
-    cursor: pointer;
 }
 
 .track-card:hover {
@@ -91,26 +105,48 @@ h1 {
 }
 
 .track-card img {
-    border-radius: 8px;
+    border-radius: 4px;
     width: 50px;
     height: 50px;
-    margin-right: 20px;
-}
-
-.track-info {
-    display: flex;
-    flex-direction: column;
+    object-fit: cover;
+    margin-right: 15px;
 }
 
 .track-info h3 {
     margin: 0;
-    font-size: 1.5em;
-    font-weight: 600;
+    font-size: 18px;
     color: #fff;
 }
 
 .track-info p {
-    margin: 5px 0 0;
-    font-size: 1em;
+    margin-top: 5px;
+    font-size: 14px;
     color: #b3b3b3;
+}
+
+/* Song Search Container */
+.song-search-container input[type="text"] {
+    width: 80%;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #282828;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.song-search-container button {
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #1DB954;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.song-search-container button:hover {
+    background-color: #1aa34a;
 }

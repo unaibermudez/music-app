@@ -88,6 +88,7 @@ async function getTopTracksByArtistId(token, artistId) {
 }
 
 async function searchSongsByArtist(token, artistId, query) {
+    console.log('Searching for:', query);
     const response = await fetch(`https://api.spotify.com/v1/search?q=${query}%20artist:${artistId}&type=track&market=ES`, {
         headers: {
             'Authorization': `Bearer ${token}`
@@ -98,6 +99,7 @@ async function searchSongsByArtist(token, artistId, query) {
 }
 
 function displaySearchResults(tracks) {
+    console.log('Search results:', tracks);
     const resultsContainer = document.getElementById('search-results');
     if (tracks.length > 0) {
         resultsContainer.innerHTML = tracks.map(track => `
